@@ -35,10 +35,10 @@ export default function RegisterPage() {
         description: "Account created. Please log in.",
         action: {
           label: "Go to Login",
-          onClick: () => router.push("/login"),
+          onClick: () => router.push("/login?registered=true"),
         },
       });
-        router.push("/login");
+        router.push("/login?registered=true");
       } else {
         // Handle known errors
         if (res.status === 409) {

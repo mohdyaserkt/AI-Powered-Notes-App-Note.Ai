@@ -7,10 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-
-export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import { useSearchParams } from "next/navigation";
+import { Suspense } from 'react'
+function LoginPage() {
+  const searchParams = useSearchParams();
+  const registered = searchParams.get("registered");
+  const [email, setEmail] = useState(!registered?"testuser@gmail.com":"");
+  const [password, setPassword] = useState(!registered?"TestUserPassword":"");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -70,4 +73,21 @@ export default function LoginPage() {
       </div>
     </div>
   );
+}
+
+function LoginFallback() {
+  return <>During production builds, a static page that calls useSearchParams from a Client Component must be wrapped in a Suspense boundary, otherwise the build fails with the Missing Suspense boundary with useSearchParams error.</>
+}
+
+export default function Page() {
+  return (
+    <>
+      <nav>
+        <Suspense fallback={<LoginFallback />}>
+          <LoginPage />
+        </Suspense>
+      </nav>
+      <h1>Dashboard</h1>
+    </>
+  )
 }
