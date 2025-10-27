@@ -14,7 +14,7 @@ COPY . .
 
 
 
-# Ensure TypeScript exists for Next.js config
+
 RUN npm install typescript --save-dev
 
 # Explicitly set ENV vars for build-time

@@ -105,7 +105,7 @@ export default function DashboardPage() {
        <div className="columns-1 md:columns-2 gap-4 space-y-4">
           
           {notes.map((note) => (
-            <Card key={note._id} className="overflow-hidden">
+            <Card  key={note._id} className="overflow-hidden ">
               <CardHeader className="pb-3">
                 <div className="flex flex-wrap justify-between gap-2">
                   <CardTitle className="text-base sm:text-lg flex-1 min-w-0">
@@ -131,7 +131,7 @@ export default function DashboardPage() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent onClick={()=>router.push(`/dashboard/notes/${note._id}`)} className="cursor-pointer">
                 <p className="text-sm text-muted-foreground line-clamp-3">
                   {note.content}
                 </p>
