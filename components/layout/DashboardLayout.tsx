@@ -114,12 +114,12 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </nav>
 
           <div className="p-4 border-t space-y-3">
-            <div className="flex items-center justify-between p-2 bg-secondary rounded-md">
+            <div onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="flex cursor-pointer items-center justify-between p-2 bg-secondary rounded-md">
               <span className="text-sm">Theme</span>
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="cursor-pointer"
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}

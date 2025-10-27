@@ -20,12 +20,13 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Theme Toggle (Top Right) */}
-      <div className="absolute top-4 right-4 z-10">
+      <div className="absolute top-4 right-4 z-10 ">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           aria-label="Toggle theme"
+          className="cursor-pointer"
         >
           {theme === "dark" ? (
             <Sun className="h-5 w-5 text-yellow-400" />
