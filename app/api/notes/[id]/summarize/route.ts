@@ -10,15 +10,16 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } 
 ) {
   try {
+    const { id } = await context.params;
     const auth = await authenticate(req);
     if (!auth) return new Response("Unauthorized", { status: 401 });
 
     await connectDB();
     const note = await Note.findOne({
-      _id: params.id,
+      _id:id,
       author: auth.userId,
     });
     if (!note) return new Response("Note not found", { status: 404 });

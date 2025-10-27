@@ -8,15 +8,16 @@ import { handleZodError, handleError, success } from "@/lib/apiUtils";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } 
 ) {
   try {
+    const { id } = await context.params;
     const auth = await authenticate(req);
     if (!auth) return new Response("Unauthorized", { status: 401 });
 
     await connectDB();
     const note = await Note.findOne({
-      _id: params.id,
+      _id:id,
       author: auth.userId,
     });
     if (!note) return new Response("Note not found", { status: 404 });
@@ -28,9 +29,10 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } 
 ) {
   try {
+    const { id } = await context.params;
     const auth = await authenticate(req);
     if (!auth) return new Response("Unauthorized", { status: 401 });
 
@@ -40,7 +42,7 @@ export async function PUT(
 
     await connectDB();
     const note = await Note.findOneAndUpdate(
-      { _id: params.id, author: auth.userId },
+      { _id:id, author: auth.userId },
       validated.data,
       { new: true }
     );
@@ -53,15 +55,16 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } 
 ) {
   try {
+    const { id } = await context.params;
     const auth = await authenticate(req);
     if (!auth) return new Response("Unauthorized", { status: 401 });
 
     await connectDB();
     const result = await Note.deleteOne({
-      _id: params.id,
+      _id:id,
       author: auth.userId,
     });
     if (result.deletedCount === 0)
