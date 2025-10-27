@@ -15,12 +15,16 @@
   - Password: `TestUserPassword`
 
 > 💡 Use these credentials to explore the app without registering.
-
 ---
 ## 📚 API Documentation
 
 - **Interactive Docs**: [SwaggerHub - NoteAi API](https://app.swaggerhub.com/apis-docs/YASERKT786/NoteAi/1.0.0)
 ---
+## 🎥 Demo Video
+[![Watch the video](https://res.cloudinary.com/daz1e04fq/image/upload/v1761600247/Untitled_design_xfnbtz.png)](https://youtu.be/oeSGH1NwKd4)
+
+---
+
 
 
 ## ✨ Features
